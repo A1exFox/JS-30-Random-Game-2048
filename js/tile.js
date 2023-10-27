@@ -20,4 +20,13 @@ export class Tile {
     this.tileElement.style.setProperty('--bg-lightness', `${bgLightness}%`);
     this.tileElement.style.setProperty('--text-lightness', `${bgLightness < 50 ? 90 : 10}%`);
   }
+  removeFromDOM() {
+    this.tileElement.remove();
+  }
+
+  waitForTransitionEnd() {
+    return new Promise(resolve => {
+      this.tileElement.addEventListener('transitionend', resolve, { once: true })
+    });
+  }
 }
